@@ -1,1 +1,1 @@
-# cypress-automation-demo
+# cypress-ecommerce-demo
