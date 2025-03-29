@@ -35,7 +35,7 @@ export const users = {
   standard: { username: 'standard_user', password: 'secret_sauce' },
   locked: { username: 'locked_out_user', password: 'secret_sauce' }
 };
-
+```
 ---
 
 ## 🧪 Test Plan: Logout Functionality (`logout.cy.js`)
@@ -65,3 +65,4 @@ cy.url().should('eq', Cypress.config().baseUrl);
 cy.get(loginSelectors.loginButton).should('be.visible');
 cy.getCookie('session-username').should('be.null');
 cy.window().its('localStorage').should('be.empty');
+```
