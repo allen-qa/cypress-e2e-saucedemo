@@ -10,3 +10,9 @@ export const inventorySelectors = {
     title: '.title',
     cartIcon: '.shopping_cart_link'
 };
+
+export const headerSelectors = {
+    logo: '.app_logo',
+    menuButton: '#react-burger-menu-btn',
+    logoutButton: '#logout_sidebar_link'
+};

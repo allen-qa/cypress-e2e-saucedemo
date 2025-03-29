@@ -1,4 +1,3 @@
-/// <reference types="cypress" />
 import { users } from '../fixtures/users';
 import { loginSelectors, inventorySelectors } from '../support/selectors';
 
