@@ -6,8 +6,6 @@
 - 🔒 **Security-aware testing** (masked secrets, session validation)
 - 📊 **Comprehensive coverage** (happy paths, edge cases)
 
-## 🌟 Project Highlights
-
 ### 🛒 Cart Functionality
 - Implements **real-time cart tracking** with badge counter validation
 - Tests **bulk operations** for adding/removing multiple items
