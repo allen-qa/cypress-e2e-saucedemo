@@ -1,4 +1,4 @@
-# Cypress e2e SauceDemo 🛒
+# Cypress E2E SauceDemo 🛒
 
 ## 📌 Project Overview
 **`cypress-e2e-saucedemo`** is a test automation project showcasing my Cypress expertise by validating real-world e-commerce scenarios on [SauceDemo](https://www.saucedemo.com/). It demonstrates:
