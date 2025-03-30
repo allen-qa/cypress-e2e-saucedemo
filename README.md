@@ -1,7 +1,7 @@
-# Cypress E-Commerce Demo 🛒
+# Cypress E2E SauceDemo 🛒
 
 ## 📌 Project Overview
-**`cypress-ecommerce-demo`** is a test automation project showcasing my Cypress expertise by validating real-world e-commerce scenarios on [SauceDemo](https://www.saucedemo.com/). It demonstrates:
+**`cypress-e2e-saucedemo`** is a test automation project showcasing my Cypress expertise by validating real-world e-commerce scenarios on [SauceDemo](https://www.saucedemo.com/). It demonstrates:
 - ✅ **Modern testing practices** (Page Objects, AAA pattern)
 - 🔒 **Security-aware testing** (masked secrets, session validation)
 - 📊 **Comprehensive coverage** (happy paths, edge cases)
