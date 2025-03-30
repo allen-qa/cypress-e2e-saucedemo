@@ -6,7 +6,7 @@
 - 🔒 **Security-aware testing** (masked secrets, session validation)
 - 📊 **Comprehensive coverage** (happy paths, edge cases)
 
-**View Test Plans**: Each test file has an associated 🧪 **test plan**, 🎥 **test demo video**, as well as option to 💻 **view test code** in this README below.
+Each test file has an associated 🧪 **test plan**, 🎥 **test demo video**, as well as option to 💻 **view test code** in this README below.
 
 ---
 
@@ -97,6 +97,33 @@ describe('SauceDemo Login Tests', () => {
 </div>
 
 ![Login Test Demo](assets/gifs/login-demo.gif)
+
+---
+
+## 🏗️ Project Structure
+
+```bash
+cypress/
+├── e2e/
+│   ├── cart.cy.js           # Cart operations
+│   ├── inventory.cy.js      # Product sorting/display
+│   ├── login.cy.js          # Authentication
+│   └── logout.cy.js         # Session termination
+│
+├── fixtures/
+│   ├── items.json           # Product data
+│   └── users.json           # User credentials
+│
+├── support/
+│   ├── commands.js          # Custom commands
+│   ├── selectors.js         # DOM selectors
+│   └── e2e.js               # Global imports
+│
+├── videos/                  # Test recordings
+│
+├── cypress.config.js        # Test runner config
+└── package.json             # Dependencies
+```
 
 ---
 
