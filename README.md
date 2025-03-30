@@ -31,7 +31,8 @@
 
 <div align="right">
 <details>
-<summary><b>📜 Full Test Code</b></summary>
+<summary><b>👨‍💻 View Test Code</b></summary>
+<div align="left">
 
 ```javascript
 // login.cy.js
@@ -91,7 +92,9 @@ describe('SauceDemo Login Tests', () => {
       .and('contain', 'Username is required');
   });
 });
+
 ```
+</div>
 </details>
 </div>
 
@@ -114,6 +117,66 @@ describe('SauceDemo Login Tests', () => {
 - **State Management**: Ensures UI resets properly
 
 ![Logout Test Demo](assets/gifs/logout-demo.gif)
+
+<div align="right">
+<details>
+<summary><b>👨‍💻 View Test Code</b></summary>
+<div align="left">
+
+```javascript
+// logout.cy.js
+// @ts-nocheck
+import { headerSelectors, loginSelectors } from "../support/selectors";
+import { users } from "../fixtures/users";
+
+describe('SauceDemo Logout Tests', () => {
+    beforeEach(() => {
+        // Clear session cookies and local storage before each test
+        cy.clearCookies().clearLocalStorage();
+
+        // Login before each test
+        cy.login(users.standard.username, users.standard.password);
+    });
+
+    it('successfully logs out', () => {
+        // ACT: Logout
+        cy.get(headerSelectors.menuButton).click();
+        cy.get(headerSelectors.logoutButton).click();
+
+        // ASSERT: Verify successful logout
+        cy.url().should('eq', Cypress.config().baseUrl);
+        cy.get(loginSelectors.loginButton).should('be.visible');
+    });
+
+    it('should block access to inventory page after logout', () => {
+        // ACT: Logout and try to access inventory page
+        cy.get(headerSelectors.menuButton).click();
+        cy.get(headerSelectors.logoutButton).click();
+
+        // ASSERT: Verify error message and no redirect
+        cy.url().should('eq', Cypress.config().baseUrl);
+        cy.visit('/inventory.html', {
+            failOnStatusCode: false, // Allow 404/403 without failing the test
+          });
+        cy.get(loginSelectors.errorMessage)
+            .should('be.visible')
+            .and('have.text', `Epic sadface: You can only access '/inventory.html' when you are logged in.`);
+    });
+
+    it('should clear session cookies after logout', () => {
+        // ACT: Logout and check session cookie
+        cy.get(headerSelectors.menuButton).click();
+        cy.get(headerSelectors.logoutButton).click();
+
+        // ASSERT: Verify session cookie is cleared
+        cy.getCookie('session-username').should('be.null');
+    });
+});
+
+```
+</div>
+</details>
+</div>
 
 ---
 
@@ -139,6 +202,120 @@ describe('SauceDemo Login Tests', () => {
 
 ![Inventory Test Demo](assets/gifs/inventory-demo.gif)
 
+<div align="right">
+<details>
+<summary><b>👨‍💻 View Test Code</b></summary>
+<div align="left">
+
+```javascript
+// inventory.cy.js
+// @ts-nocheck
+import { headerSelectors, inventorySelectors, loginSelectors } from "../support/selectors";
+import { users } from "../fixtures/users";
+
+const sortingOptions = {
+    nameAZ: 'Name (A to Z)',
+    nameZA: 'Name (Z to A)',
+    priceLowHigh: 'Price (low to high)',
+    priceHighLow: 'Price (high to low)'
+};
+
+const sortingUtils = {
+    sortProductsBy: (sortOption) => {
+        cy.get(inventorySelectors.sortDropdown).select(sortOption);
+    },
+
+    verifyProductOrder: (expectedItems) => {
+        cy.get(inventorySelectors.inventoryItemName)
+            .should('have.length', expectedItems.length)
+            .then(($items) => {
+                const actualItems = Cypress._.map($items, 'innerText');
+                expect(actualItems).to.deep.equal(expectedItems);
+            });
+    },
+
+    verifyPriceOrder: (expectedPrices) => {
+        cy.get(inventorySelectors.inventoryItemPrice)
+            .should('have.length', expectedPrices.length)
+            .then(($prices) => {
+                const priceTexts = Cypress._.map($prices, 'innerText');
+                const actualPrices = priceTexts.map(text => {
+                    const priceValue = parseFloat(text.replace('$', ''));
+                    if (isNaN(priceValue)) {
+                        throw new Error(`Failed to parse price from: "${text}"`);
+                    }
+                    return priceValue;
+                });
+                expect(actualPrices).to.deep.equal(expectedPrices);
+            });
+    }
+};
+
+describe('SauceDemo Inventory Tests', () => {
+    beforeEach(() => {
+        // Login before each test
+        cy.login(users.standard.username, users.standard.password);
+    });
+
+    it('displays correct inventory page elements', () => {
+        cy.get(inventorySelectors.title).should('contain', 'Products'); // Verify title
+        cy.get(inventorySelectors.inventoryList).should('be.visible'); // Verify product list exists
+        cy.get(inventorySelectors.inventoryItem).should('have.length.gt', 0); // Verify at least one product item exists
+        cy.get(headerSelectors.cartIcon).should('be.visible'); // Verify cart icon exists
+    });
+
+    it('correctly sorts products by Name (A to Z)', () => {
+        // ACT: Sort products by Name (A to Z)
+        sortingUtils.sortProductsBy(sortingOptions.nameAZ);
+
+        // ASSERT: Verify product order
+        sortingUtils.verifyProductOrder([
+            'Sauce Labs Backpack',
+            'Sauce Labs Bike Light',
+            'Sauce Labs Bolt T-Shirt',
+            'Sauce Labs Fleece Jacket',
+            'Sauce Labs Onesie',
+            'Test.allTheThings() T-Shirt (Red)'
+        ]);
+    });
+
+    it('correctly sorts products by Name (Z to A)', () => {
+        // ACT: Sort products by Name (Z to A)
+        sortingUtils.sortProductsBy(sortingOptions.nameZA);
+
+        // ASSERT: Verify product order
+        sortingUtils.verifyProductOrder([
+            'Test.allTheThings() T-Shirt (Red)',
+            'Sauce Labs Onesie',
+            'Sauce Labs Fleece Jacket',
+            'Sauce Labs Bolt T-Shirt',
+            'Sauce Labs Bike Light',
+            'Sauce Labs Backpack'
+        ]);
+    });
+
+    it('correctly sorts products by Price (low to high)', () => {
+        // ACT: Sort products by Price (low to high)
+        sortingUtils.sortProductsBy(sortingOptions.priceLowHigh);
+
+        // ASSERT: Verify product order
+        sortingUtils.verifyPriceOrder([7.99, 9.99, 15.99, 15.99, 29.99, 49.99]);
+    });
+
+    it('correctly sorts products by Price (high to low)', () => {
+        // ACT: Sort products by Price (high to low)
+        sortingUtils.sortProductsBy(sortingOptions.priceHighLow);
+
+        // ASSERT: Verify product order
+        sortingUtils.verifyPriceOrder([49.99, 29.99, 15.99, 15.99, 9.99, 7.99]);
+    });
+});
+
+```
+</div>
+</details>
+</div>
+
 ---
 
 ## 🧪 Test Plan: Cart Functionality (`cart.cy.js`)
@@ -162,6 +339,94 @@ describe('SauceDemo Login Tests', () => {
 - **Data Integrity**: Validates product details (name, description, price) persist in cart
 
 ![Cart Test Demo](assets/gifs/cart-demo.gif)
+
+<div align="right">
+<details>
+<summary><b>👨‍💻 View Test Code</b></summary>
+<div align="left">
+
+```javascript
+// cart.cy.js
+// @ts-nocheck
+import { headerSelectors, inventorySelectors, loginSelectors, cartSelectors } from "../support/selectors";
+import { users } from "../fixtures/users";
+import { items } from "../fixtures/items";
+
+describe('SauceDemo Cart Tests', () => {
+    beforeEach(() => {
+        // Login before each test
+        cy.login(users.standard.username, users.standard.password);
+    });
+    
+    it('adds a single item to the cart', () => {
+        const itemName = 'Sauce Labs Backpack';
+        
+        // ACT: Add item to cart
+        cy.addItemToCart(itemName);
+
+        // ASSERT: Verify item is in cart
+        cy.get(headerSelectors.shoppingCartBadge).should('be.visible').and('contain', '1');
+        cy.visitCartPage();
+        cy.contains(cartSelectors.cartItem, itemName)
+            .should('be.visible')
+            .parentsUntil(cartSelectors.cartItem)
+            .should('contain', itemName)
+            .and('contain', items[itemName].desc)
+            .and('contain', items[itemName].price);
+    });
+
+    it('removes an item from the cart', () => {
+        const itemName = 'Sauce Labs Backpack';
+
+        // ACT: Add and then remove item from cart
+        cy.addItemToCart(itemName);
+        cy.visitCartPage();
+        cy.get(cartSelectors.removeButton).click();
+
+        // ASSERT: Verify item is removed from cart
+        cy.get(headerSelectors.shoppingCartBadge).should('not.exist');
+        cy.contains(cartSelectors.cartItem, itemName).should('not.exist');
+    });
+
+    it('adds multiple items to the cart', () => {
+        const itemsToAdd = ['Sauce Labs Backpack', 'Sauce Labs Bike Light', 'Sauce Labs Bolt T-Shirt'];
+
+        // ACT: Add multiple items to cart
+        itemsToAdd.forEach(item => cy.addItemToCart(item));
+
+        // ASSERT: Verify all items are in cart
+        cy.get(headerSelectors.shoppingCartBadge).should('be.visible').and('contain', '3');
+        cy.visitCartPage();
+        itemsToAdd.forEach(item => {
+            cy.contains(cartSelectors.cartItem, item)
+            .should('be.visible')
+            .parentsUntil(cartSelectors.cartItem)
+            .should('contain', item)
+            .and('contain', items[item].desc)
+            .and('contain', items[item].price);
+        });
+    });
+
+    it('removes all items from the cart', () => {
+        const itemsToAdd = ['Sauce Labs Backpack', 'Sauce Labs Bike Light', 'Sauce Labs Bolt T-Shirt'];
+
+        // ACT: Add multiple items to cart
+        itemsToAdd.forEach(item => cy.addItemToCart(item));
+        cy.visitCartPage();
+
+        // Remove all items from cart
+        cy.removeAllItemsFromCart();
+
+        // ASSERT: Verify cart is empty
+        cy.get(headerSelectors.shoppingCartBadge).should('not.exist');
+        cy.get(cartSelectors.cartItem).should('not.exist');
+    });
+});
+
+```
+</div>
+</details>
+</div>
 
 ---
 
