@@ -29,6 +29,7 @@
 
 ![Login Test Demo](assets/gifs/login-demo.gif)
 
+<div align="right">
 <details>
 <summary><b>📜 Full Test Code</b></summary>
 
@@ -92,6 +93,7 @@ describe('SauceDemo Login Tests', () => {
 });
 ```
 </details>
+</div>
 
 ---
 
