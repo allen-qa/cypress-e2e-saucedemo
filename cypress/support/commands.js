@@ -1,4 +1,4 @@
-import { loginSelectors, inventorySelectors, headerSelectors } from "./selectors";
+import { loginSelectors, inventorySelectors, headerSelectors, cartSelectors } from "./selectors";
 
 Cypress.Commands.add('login', (username, password) => {
     cy.visit('/');
@@ -15,16 +15,22 @@ Cypress.Commands.add('addItemToCart', (itemName) => {
     cy.log(`Adding item to cart: ${itemName}`);
 
     // Find the item by name and click the "Add to cart" button
-    cy.contains('.inventory_item_name', itemName)
-        .parentsUntil('.inventory_item')
-        .find('.btn_inventory')
+    cy.contains(inventorySelectors.inventoryItemName, itemName)
+        .parentsUntil(inventorySelectors.inventoryItem)
+        .find(inventorySelectors.inventoryButton)
         .contains('Add to cart')
         .click();
 
-    cy.contains('.inventory_item_name', itemName)
-        .parentsUntil('.inventory_item')
-        .find('.btn_inventory')
+    cy.contains(inventorySelectors.inventoryItemName, itemName)
+        .parentsUntil(inventorySelectors.inventoryItem)
+        .find(inventorySelectors.inventoryButton)
         .should('contain', 'Remove'); // Verify button text changes to "Remove"
+});
+
+Cypress.Commands.add('removeAllItemsFromCart', () => {
+    cy.get(cartSelectors.removeButton).each($button => {
+                cy.wrap($button).click();
+            });
 });
 
 Cypress.Commands.add('visitCartPage', () => {

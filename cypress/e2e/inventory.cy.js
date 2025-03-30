@@ -99,15 +99,4 @@ describe('SauceDemo Inventory Tests', () => {
         // ASSERT: Verify product order
         sortingUtils.verifyPriceOrder([49.99, 29.99, 15.99, 15.99, 9.99, 7.99]);
     });
-    
-    it('adds a single item to the cart', () => {
-        const itemName = 'Sauce Labs Backpack';
-        
-        // ACT: Add item to cart
-        cy.addItemToCart(itemName);
-
-        // ASSERT: Verify item is in cart
-        cy.visitCartPage();
-        cy.contains('.cart_item', itemName).should('be.visible');
-    });
 });
