@@ -27,8 +27,6 @@
 - **Session Management**: Confirms cookie behavior
 - **Form Validation**: Tests empty submission cases
 
-![Login Test Demo](assets/gifs/login-demo.gif)
-
 <div align="right">
 <details>
 <summary><b>👨‍💻 View Test Code</b></summary>
@@ -97,6 +95,7 @@ describe('SauceDemo Login Tests', () => {
 </div>
 </details>
 </div>
+![Login Test Demo](assets/gifs/login-demo.gif)
 
 ---
 
@@ -115,8 +114,6 @@ describe('SauceDemo Login Tests', () => {
 - **Route Protection**: Confirms post-logout redirects
 - **Storage Management**: Validates data cleanup
 - **State Management**: Ensures UI resets properly
-
-![Logout Test Demo](assets/gifs/logout-demo.gif)
 
 <div align="right">
 <details>
@@ -177,6 +174,7 @@ describe('SauceDemo Logout Tests', () => {
 </div>
 </details>
 </div>
+![Logout Test Demo](assets/gifs/logout-demo.gif)
 
 ---
 
@@ -199,8 +197,6 @@ describe('SauceDemo Logout Tests', () => {
   - Numeric comparison with currency parsing for price sorting
 - **Modular Design**: Reusable utility functions for sorting operations
 - **Responsive Verification**: Dynamic element handling with length assertions
-
-![Inventory Test Demo](assets/gifs/inventory-demo.gif)
 
 <div align="right">
 <details>
@@ -315,6 +311,7 @@ describe('SauceDemo Inventory Tests', () => {
 </div>
 </details>
 </div>
+![Inventory Test Demo](assets/gifs/inventory-demo.gif)
 
 ---
 
@@ -337,8 +334,6 @@ describe('SauceDemo Inventory Tests', () => {
 - **Bulk Operations**: Handles both individual and batch item management
 - **Negative Assertions**: Confirms absence of elements after removal
 - **Data Integrity**: Validates product details (name, description, price) persist in cart
-
-![Cart Test Demo](assets/gifs/cart-demo.gif)
 
 <div align="right">
 <details>
@@ -427,6 +422,7 @@ describe('SauceDemo Cart Tests', () => {
 </div>
 </details>
 </div>
+![Cart Test Demo](assets/gifs/cart-demo.gif)
 
 ---
 
