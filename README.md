@@ -90,6 +90,7 @@ describe('SauceDemo Login Tests', () => {
       .and('contain', 'Username is required');
   });
 });
+```
 </details>
 
 ---
