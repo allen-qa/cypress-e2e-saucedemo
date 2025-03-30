@@ -100,86 +100,6 @@ describe('SauceDemo Login Tests', () => {
 
 ---
 
-## 🧪 Test Plan: Logout Functionality (`logout.cy.js`) 
-
-### 📋 Test Coverage
-
-| Test Scenario              | Verification Points                          | Status |
-|----------------------------|---------------------------------------------|--------|
-| **Successful Logout**      | • Returns to login page<br>• Clears session data<br>• Resets UI state | ✅     |
-| **Protected Route Access** | • Blocks access to inventory<br>• Maintains login page | ✅     |
-| **Session Cleanup**        | • Removes cookies<br>• Clears localStorage  | ✅     |
-
-### 🚀 Key Features Demonstrated
-- **Session Security**: Verifies complete auth teardown
-- **Route Protection**: Confirms post-logout redirects
-- **Storage Management**: Validates data cleanup
-- **State Management**: Ensures UI resets properly
-
-<div align="right">
-<details>
-<summary><b>💻 View Test Code</b></summary>
-<div align="left">
-
-```javascript
-// logout.cy.js
-// @ts-nocheck
-import { headerSelectors, loginSelectors } from "../support/selectors";
-import { users } from "../fixtures/users";
-
-describe('SauceDemo Logout Tests', () => {
-    beforeEach(() => {
-        // Clear session cookies and local storage before each test
-        cy.clearCookies().clearLocalStorage();
-
-        // Login before each test
-        cy.login(users.standard.username, users.standard.password);
-    });
-
-    it('successfully logs out', () => {
-        // ACT: Logout
-        cy.get(headerSelectors.menuButton).click();
-        cy.get(headerSelectors.logoutButton).click();
-
-        // ASSERT: Verify successful logout
-        cy.url().should('eq', Cypress.config().baseUrl);
-        cy.get(loginSelectors.loginButton).should('be.visible');
-    });
-
-    it('should block access to inventory page after logout', () => {
-        // ACT: Logout and try to access inventory page
-        cy.get(headerSelectors.menuButton).click();
-        cy.get(headerSelectors.logoutButton).click();
-
-        // ASSERT: Verify error message and no redirect
-        cy.url().should('eq', Cypress.config().baseUrl);
-        cy.visit('/inventory.html', {
-            failOnStatusCode: false, // Allow 404/403 without failing the test
-          });
-        cy.get(loginSelectors.errorMessage)
-            .should('be.visible')
-            .and('have.text', `Epic sadface: You can only access '/inventory.html' when you are logged in.`);
-    });
-
-    it('should clear session cookies after logout', () => {
-        // ACT: Logout and check session cookie
-        cy.get(headerSelectors.menuButton).click();
-        cy.get(headerSelectors.logoutButton).click();
-
-        // ASSERT: Verify session cookie is cleared
-        cy.getCookie('session-username').should('be.null');
-    });
-});
-
-```
-</div>
-</details>
-</div>
-
-![Logout Test Demo](assets/gifs/logout-demo.gif)
-
----
-
 ## 🧪 Test Plan: Inventory Functionality (`inventory.cy.js`)
 
 ### 📋 Test Coverage
@@ -429,6 +349,87 @@ describe('SauceDemo Cart Tests', () => {
 ![Cart Test Demo](assets/gifs/cart-demo.gif)
 
 ---
+
+## 🧪 Test Plan: Logout Functionality (`logout.cy.js`) 
+
+### 📋 Test Coverage
+
+| Test Scenario              | Verification Points                          | Status |
+|----------------------------|---------------------------------------------|--------|
+| **Successful Logout**      | • Returns to login page<br>• Clears session data<br>• Resets UI state | ✅     |
+| **Protected Route Access** | • Blocks access to inventory<br>• Maintains login page | ✅     |
+| **Session Cleanup**        | • Removes cookies<br>• Clears localStorage  | ✅     |
+
+### 🚀 Key Features Demonstrated
+- **Session Security**: Verifies complete auth teardown
+- **Route Protection**: Confirms post-logout redirects
+- **Storage Management**: Validates data cleanup
+- **State Management**: Ensures UI resets properly
+
+<div align="right">
+<details>
+<summary><b>💻 View Test Code</b></summary>
+<div align="left">
+
+```javascript
+// logout.cy.js
+// @ts-nocheck
+import { headerSelectors, loginSelectors } from "../support/selectors";
+import { users } from "../fixtures/users";
+
+describe('SauceDemo Logout Tests', () => {
+    beforeEach(() => {
+        // Clear session cookies and local storage before each test
+        cy.clearCookies().clearLocalStorage();
+
+        // Login before each test
+        cy.login(users.standard.username, users.standard.password);
+    });
+
+    it('successfully logs out', () => {
+        // ACT: Logout
+        cy.get(headerSelectors.menuButton).click();
+        cy.get(headerSelectors.logoutButton).click();
+
+        // ASSERT: Verify successful logout
+        cy.url().should('eq', Cypress.config().baseUrl);
+        cy.get(loginSelectors.loginButton).should('be.visible');
+    });
+
+    it('should block access to inventory page after logout', () => {
+        // ACT: Logout and try to access inventory page
+        cy.get(headerSelectors.menuButton).click();
+        cy.get(headerSelectors.logoutButton).click();
+
+        // ASSERT: Verify error message and no redirect
+        cy.url().should('eq', Cypress.config().baseUrl);
+        cy.visit('/inventory.html', {
+            failOnStatusCode: false, // Allow 404/403 without failing the test
+          });
+        cy.get(loginSelectors.errorMessage)
+            .should('be.visible')
+            .and('have.text', `Epic sadface: You can only access '/inventory.html' when you are logged in.`);
+    });
+
+    it('should clear session cookies after logout', () => {
+        // ACT: Logout and check session cookie
+        cy.get(headerSelectors.menuButton).click();
+        cy.get(headerSelectors.logoutButton).click();
+
+        // ASSERT: Verify session cookie is cleared
+        cy.getCookie('session-username').should('be.null');
+    });
+});
+
+```
+</div>
+</details>
+</div>
+
+![Logout Test Demo](assets/gifs/logout-demo.gif)
+
+---
+
 ## 🏗️ Project Structure
 
 ```bash
