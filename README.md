@@ -27,6 +27,8 @@
 - **Session Management**: Confirms cookie behavior
 - **Form Validation**: Tests empty submission cases
 
+![Login Test Demo](assets/gifs/login-demo.gif)
+
 ---
 
 ## 🧪 Test Plan: Logout Functionality (`logout.cy.js`) 
@@ -44,6 +46,8 @@
 - **Route Protection**: Confirms post-logout redirects
 - **Storage Management**: Validates data cleanup
 - **State Management**: Ensures UI resets properly
+
+![Logout Test Demo](assets/gifs/logout-demo.gif)
 
 ---
 
@@ -67,6 +71,8 @@
 - **Modular Design**: Reusable utility functions for sorting operations
 - **Responsive Verification**: Dynamic element handling with length assertions
 
+![Inventory Test Demo](assets/gifs/inventory-demo.gif)
+
 ---
 
 ## 🧪 Test Plan: Cart Functionality (`cart.cy.js`)
@@ -88,6 +94,8 @@
 - **Bulk Operations**: Handles both individual and batch item management
 - **Negative Assertions**: Confirms absence of elements after removal
 - **Data Integrity**: Validates product details (name, description, price) persist in cart
+
+![Cart Test Demo](assets/gifs/cart-demo.gif)
 
 ---
 
