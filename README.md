@@ -100,33 +100,6 @@ describe('SauceDemo Login Tests', () => {
 
 ---
 
-## 🏗️ Project Structure
-
-```bash
-cypress/
-├── e2e/
-│   ├── cart.cy.js           # Cart operations
-│   ├── inventory.cy.js      # Product sorting/display
-│   ├── login.cy.js          # Authentication
-│   └── logout.cy.js         # Session termination
-│
-├── fixtures/
-│   ├── items.json           # Product data
-│   └── users.json           # User credentials
-│
-├── support/
-│   ├── commands.js          # Custom commands
-│   ├── selectors.js         # DOM selectors
-│   └── e2e.js               # Global imports
-│
-├── videos/                  # Test recordings
-│
-├── cypress.config.js        # Test runner config
-└── package.json             # Dependencies
-```
-
----
-
 ## 🧪 Test Plan: Logout Functionality (`logout.cy.js`) 
 
 ### 📋 Test Coverage
@@ -455,6 +428,27 @@ describe('SauceDemo Cart Tests', () => {
 
 ![Cart Test Demo](assets/gifs/cart-demo.gif)
 
+---
+## 🏗️ Project Structure
+
+```bash
+cypress/
+├── e2e/
+│   ├── login.cy.js     # ✅ 5 auth scenarios
+│   ├── logout.cy.js    # 🔒 Session termination  
+│   ├── inventory.cy.js # 📊 Sorting/display
+│   └── cart.cy.js      # 🛒 Add/remove items
+│
+├── fixtures/
+│   ├── users.json      # 🔐 Test credentials
+│   └── items.json      # 📦 Product catalog
+│
+├── support/
+│   ├── commands.js     # 🛠️ Custom helpers
+│   └── selectors.js    # 🎯 Centralized locators
+│
+└── cypress.config.js   # ⚙️ Runner settings
+```
 ---
 
 ## 🌟 Project Highlights
