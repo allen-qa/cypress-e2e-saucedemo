@@ -10,62 +10,40 @@
 
 ---
 
-## 🧪 Test Plan: Login Functionality (`login.cy.js`)
+# 🧪 Test Plan: Login Functionality (`login.cy.js`)
 
-### 📋 Test Cases
-| #  | Test Case                | Steps                                                                 | Verification Points                          |
-|----|--------------------------|----------------------------------------------------------------------|---------------------------------------------|
-| 1  | Happy Path Login         | 1. Enter valid credentials<br>2. Submit form                         | • Redirects to `/inventory.html`<br>• "Products" header visible<br>• Session cookie exists |
-| 2  | Invalid Password         | 1. Enter valid username + wrong password<br>2. Submit form           | • Shows error message<br>• No redirect      |
-| 3  | Locked User              | 1. Enter locked user credentials<br>2. Submit form                   | • Displays "locked out" error<br>• No redirect |
-| 4  | Empty Field Validation   | 1. Submit empty form                                                 | • Shows "Username is required" error        |
+## 📋 Test Coverage
 
-### 🛠️ Technical Details
-```javascript
-// Selectors (support/selectors.js)
-export const loginSelectors = {
-  username: '#user-name',
-  password: '#password',
-  loginButton: '#login-button',
-  errorMessage: '[data-test="error"]'
-};
+| Test Scenario              | Verification Points                          | Status |
+|----------------------------|---------------------------------------------|--------|
+| **Happy Path Login**       | • Redirects to inventory<br>• Session established<br>• UI updates correctly | ✅     |
+| **Invalid Password**       | • Error message displays<br>• No page redirect | ✅     |
+| **Locked User**           | • Specific locked-out error appears<br>• Blocks navigation | ✅     |
+| **Empty Field Validation** | • Required field errors appear<br>• Form blocks submission | ✅     |
 
-// Test Data (fixtures/users.js)
-export const users = {
-  standard: { username: 'standard_user', password: 'secret_sauce' },
-  locked: { username: 'locked_out_user', password: 'secret_sauce' }
-};
-```
+## 🚀 Key Features Demonstrated
+- **Credential Testing**: Validates both success and failure paths
+- **Error Handling**: Verifies UI responses to invalid inputs
+- **Session Management**: Confirms cookie behavior
+- **Form Validation**: Tests empty submission cases
+
 ---
 
-## 🧪 Test Plan: Logout Functionality (`logout.cy.js`)
+# 🧪 Test Plan: Logout Functionality (`logout.cy.js`) 
 
-### 📋 Test Cases
-| #  | Test Case                | Steps                                                                 | Verification Points                          |
-|----|--------------------------|----------------------------------------------------------------------|---------------------------------------------|
-| 1  | Successful Logout        | 1. While logged in<br>2. Open menu<br>3. Click logout                | • Redirects to login page<br>• Login form visible<br>• Session data cleared |
-| 2  | Protected Route Access   | 1. After logout<br>2. Attempt to visit `/inventory.html`             | • Shows error message<br>• Maintains login page |
-| 3  | Session Cleanup          | 1. After logout                                                     | • Session cookie is null<br>• localStorage empty |
+## 📋 Test Coverage
 
-### 🛠️ Technical Details
-```javascript
-// Selectors (support/selectors.js)
-export const headerSelectors = {
-  menuButton: '#react-burger-menu-btn', 
-  logoutButton: '#logout_sidebar_link'
-};
+| Test Scenario              | Verification Points                          | Status |
+|----------------------------|---------------------------------------------|--------|
+| **Successful Logout**      | • Returns to login page<br>• Clears session data<br>• Resets UI state | ✅     |
+| **Protected Route Access** | • Blocks access to inventory<br>• Maintains login page | ✅     |
+| **Session Cleanup**        | • Removes cookies<br>• Clears localStorage  | ✅     |
 
-// Shared Test Data (fixtures/users.js)
-export const users = {
-  standard: { username: 'standard_user', password: 'secret_sauce' }
-};
-
-// Key Assertions
-cy.url().should('eq', Cypress.config().baseUrl);
-cy.get(loginSelectors.loginButton).should('be.visible');
-cy.getCookie('session-username').should('be.null');
-cy.window().its('localStorage').should('be.empty');
-```
+## 🚀 Key Features Demonstrated
+- **Session Security**: Verifies complete auth teardown
+- **Route Protection**: Confirms post-logout redirects
+- **Storage Management**: Validates data cleanup
+- **State Management**: Ensures UI resets properly
 
 ---
 
@@ -89,8 +67,65 @@ cy.window().its('localStorage').should('be.empty');
 - **Modular Design**: Reusable utility functions for sorting operations
 - **Responsive Verification**: Dynamic element handling with length assertions
 
+---
+
+# 🧪 Test Plan: Cart Functionality (`cart.cy.js`)
+
+## 📋 Test Coverage
+
+| Test Scenario              | Verification Points                          | Status |
+|----------------------------|---------------------------------------------|--------|
+| **Single Item Addition**    | • Cart badge updates<br>• Item appears in cart with correct details (name, desc, price) | ✅     |
+| **Single Item Removal**     | • Cart badge disappears<br>• Item removed from cart view | ✅     |
+| **Multiple Items Addition** | • Cart badge shows correct count<br>• All items appear with correct details | ✅     |
+| **Full Cart Clearance**     | • Cart badge disappears<br>• All items removed from cart view | ✅     |
+
+## 🚀 Key Features Demonstrated
+- **User Flow Testing**: Simulates complete add-to-cart and checkout preparation scenarios
+- **Dynamic Verification**: 
+  - Real-time cart badge updates
+  - Multi-item validation in single test
+- **Bulk Operations**: Handles both individual and batch item management
+- **Negative Assertions**: Confirms absence of elements after removal
+- **Data Integrity**: Validates product details (name, description, price) persist in cart
+
 ## 🌟 Portfolio Highlights
-- Implements **4 distinct sorting mechanisms** with precise validation
-- Uses **Cypress best practices** for selectors and assertions
-- Demonstrates **clean test architecture** with separation of concerns
-- Includes **error handling** for price parsing edge cases
+
+### 🛒 Cart Functionality
+- Implements **real-time cart tracking** with badge counter validation
+- Tests **bulk operations** for adding/removing multiple items
+- Validates **data integrity** across product pages and cart views
+- Demonstrates **empty state handling** for cart clearance
+
+### 🔐 Authentication Flows
+- Covers **5 distinct login scenarios** (happy path, locked user, etc.)
+- Implements **secure credential handling** with hidden password logging
+- Validates **session management** through cookie verification
+- Tests **protected routes** with proper error messaging
+
+### 📊 Inventory Management
+- Implements **4 sorting mechanisms** with precise validation
+- Includes **currency parsing** with error handling
+- Demonstrates **responsive verification** for dynamic lists
+- Uses **modular utilities** for reusable sorting operations
+
+### 🏗️ Architectural Excellence
+- Follows **Cypress best practices** for selectors and commands
+- Demonstrates **clean test architecture** with:
+  - Separation of concerns (selectors, fixtures, tests)
+  - Custom commands for common actions
+  - Utility functions for complex operations
+- Includes **comprehensive error handling** throughout
+- Maintains **consistent test patterns** across all suites
+
+### � Edge Case Coverage
+- Tests **empty form submissions** with proper validation
+- Verifies **locked user experience** with specific messaging
+- Handles **price parsing edge cases** (currency symbols, NaN values)
+- Validates **session cleanup** after logout
+
+### 📈 Scalability Features
+- **Data-driven testing** using fixture files
+- **Reusable commands** for common workflows (login, cart ops)
+- **Component-based selectors** for easy maintenance
+- **Cross-suite consistency** in test structure
