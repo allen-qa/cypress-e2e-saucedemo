@@ -27,14 +27,7 @@
 - **Session Management**: Confirms cookie behavior
 - **Form Validation**: Tests empty submission cases
 
-<div align="center">
-
-<!-- Tab Buttons -->
-<details open>
-<summary><b>🎥 Live Demo</b></summary>
-  
-![Login Test Demo](assets/gifs/login-demo.gif){: width="600" }
-</details>
+![Login Test Demo](assets/gifs/login-demo.gif)
 
 <details>
 <summary><b>📜 Full Test Code</b></summary>
@@ -97,10 +90,7 @@ describe('SauceDemo Login Tests', () => {
       .and('contain', 'Username is required');
   });
 });
-
 </details>
-</div>
-```
 
 ---
 
