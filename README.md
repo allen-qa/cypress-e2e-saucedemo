@@ -6,45 +6,6 @@
 - 🔒 **Security-aware testing** (masked secrets, session validation)
 - 📊 **Comprehensive coverage** (happy paths, edge cases)
 
-### 🛒 Cart Functionality
-- Implements **real-time cart tracking** with badge counter validation
-- Tests **bulk operations** for adding/removing multiple items
-- Validates **data integrity** across product pages and cart views
-- Demonstrates **empty state handling** for cart clearance
-
-### 🔐 Authentication Flows
-- Covers **5 distinct login scenarios** (happy path, locked user, etc.)
-- Implements **secure credential handling** with hidden password logging
-- Validates **session management** through cookie verification
-- Tests **protected routes** with proper error messaging
-
-### 📊 Inventory Management
-- Implements **4 sorting mechanisms** with precise validation
-- Includes **currency parsing** with error handling
-- Demonstrates **responsive verification** for dynamic lists
-- Uses **modular utilities** for reusable sorting operations
-
-### 🏗️ Architectural Excellence
-- Follows **Cypress best practices** for selectors and commands
-- Demonstrates **clean test architecture** with:
-  - Separation of concerns (selectors, fixtures, tests)
-  - Custom commands for common actions
-  - Utility functions for complex operations
-- Includes **comprehensive error handling** throughout
-- Maintains **consistent test patterns** across all suites
-
-### � Edge Case Coverage
-- Tests **empty form submissions** with proper validation
-- Verifies **locked user experience** with specific messaging
-- Handles **price parsing edge cases** (currency symbols, NaN values)
-- Validates **session cleanup** after logout
-
-### 📈 Scalability Features
-- **Data-driven testing** using fixture files
-- **Reusable commands** for common workflows (login, cart ops)
-- **Component-based selectors** for easy maintenance
-- **Cross-suite consistency** in test structure
-
 **View Test Plans**: Each test file has an associated test plan in this README below.
 
 ---
@@ -127,3 +88,46 @@
 - **Bulk Operations**: Handles both individual and batch item management
 - **Negative Assertions**: Confirms absence of elements after removal
 - **Data Integrity**: Validates product details (name, description, price) persist in cart
+
+---
+
+## 🌟 Project Highlights
+
+### 🛒 Cart Functionality
+- Implements **real-time cart tracking** with badge counter validation
+- Tests **bulk operations** for adding/removing multiple items
+- Validates **data integrity** across product pages and cart views
+- Demonstrates **empty state handling** for cart clearance
+
+### 🔐 Authentication Flows
+- Covers **5 distinct login scenarios** (happy path, locked user, etc.)
+- Implements **secure credential handling** with hidden password logging
+- Validates **session management** through cookie verification
+- Tests **protected routes** with proper error messaging
+
+### 📊 Inventory Management
+- Implements **4 sorting mechanisms** with precise validation
+- Includes **currency parsing** with error handling
+- Demonstrates **responsive verification** for dynamic lists
+- Uses **modular utilities** for reusable sorting operations
+
+### 🏗️ Architectural Excellence
+- Follows **Cypress best practices** for selectors and commands
+- Demonstrates **clean test architecture** with:
+  - Separation of concerns (selectors, fixtures, tests)
+  - Custom commands for common actions
+  - Utility functions for complex operations
+- Includes **comprehensive error handling** throughout
+- Maintains **consistent test patterns** across all suites
+
+### � Edge Case Coverage
+- Tests **empty form submissions** with proper validation
+- Verifies **locked user experience** with specific messaging
+- Handles **price parsing edge cases** (currency symbols, NaN values)
+- Validates **session cleanup** after logout
+
+### 📈 Scalability Features
+- **Data-driven testing** using fixture files
+- **Reusable commands** for common workflows (login, cart ops)
+- **Component-based selectors** for easy maintenance
+- **Cross-suite consistency** in test structure
