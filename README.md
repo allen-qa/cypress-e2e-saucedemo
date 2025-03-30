@@ -6,7 +6,7 @@
 - 🔒 **Security-aware testing** (masked secrets, session validation)
 - 📊 **Comprehensive coverage** (happy paths, edge cases)
 
-**View Test Plans**: Each test file has an associated **test plan**,**test demo video**, as well as option to **view test code** in this README below.
+**View Test Plans**: Each test file has an associated 🧪 **test plan**, 🎥 **test demo video**, as well as option to 💻 **view test code** in this README below.
 
 ---
 
@@ -29,7 +29,7 @@
 
 <div align="right">
 <details>
-<summary><b>👨‍💻 View Test Code</b></summary>
+<summary><b>💻 View Test Code</b></summary>
 <div align="left">
 
 ```javascript
@@ -118,7 +118,7 @@ describe('SauceDemo Login Tests', () => {
 
 <div align="right">
 <details>
-<summary><b>👨‍💻 View Test Code</b></summary>
+<summary><b>💻 View Test Code</b></summary>
 <div align="left">
 
 ```javascript
@@ -202,7 +202,7 @@ describe('SauceDemo Logout Tests', () => {
 
 <div align="right">
 <details>
-<summary><b>👨‍💻 View Test Code</b></summary>
+<summary><b>💻 View Test Code</b></summary>
 <div align="left">
 
 ```javascript
@@ -340,7 +340,7 @@ describe('SauceDemo Inventory Tests', () => {
 
 <div align="right">
 <details>
-<summary><b>👨‍💻 View Test Code</b></summary>
+<summary><b>💻 View Test Code</b></summary>
 <div align="left">
 
 ```javascript
