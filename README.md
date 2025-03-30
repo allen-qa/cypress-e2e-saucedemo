@@ -6,7 +6,7 @@
 - 🔒 **Security-aware testing** (masked secrets, session validation)
 - 📊 **Comprehensive coverage** (happy paths, edge cases)
 
-Each test file has an associated 🧪 **test plan**, 🎥 **test demo video**, as well as option to 💻 **view test code** in this README below.
+Each test file has an associated 🧪 **test plan**, 🎥 **test demo video**, as well as an option to 💻 **view test code** in this README below.
 
 ---
 
