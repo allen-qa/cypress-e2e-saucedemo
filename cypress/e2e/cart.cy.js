@@ -4,12 +4,6 @@ import { headerSelectors, inventorySelectors, loginSelectors, cartSelectors } fr
 import { users } from "../fixtures/users";
 import { items } from "../fixtures/items";
 
-const itemInfo = {
-    name: 'Sauce Labs Backpack',
-    description: 'carry.allTheThings() with the sleek, streamlined Sly Pack that melds uncompromising style with unequaled laptop and tablet protection.',
-    price: '$29.99'
-};
-
 describe('SauceDemo Cart Tests', () => {
     beforeEach(() => {
         // Login before each test

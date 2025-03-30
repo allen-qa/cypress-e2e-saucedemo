@@ -66,3 +66,31 @@ cy.get(loginSelectors.loginButton).should('be.visible');
 cy.getCookie('session-username').should('be.null');
 cy.window().its('localStorage').should('be.empty');
 ```
+
+---
+
+# 🧪 Test Plan: Inventory Functionality (`inventory.cy.js`)
+
+## 📋 Test Coverage
+
+| Test Scenario              | Verification Points                          | Status |
+|----------------------------|---------------------------------------------|--------|
+| **Inventory Page Render**  | • Correct page title<br>• Product list displays<br>• Cart icon visible | ✅     |
+| **A-Z Sorting**            | • Products sorted alphabetically (A→Z)       | ✅     |
+| **Z-A Sorting**            | • Products sorted reverse-alphabetically (Z→A)| ✅     |
+| **Price Low→High**         | • Products sorted by ascending price         | ✅     |
+| **Price High→Low**         | • Products sorted by descending price        | ✅     |
+
+## 🚀 Key Features Demonstrated
+- **End-to-End Testing**: Simulates real user interactions with sorting functionality
+- **Data Validation**: 
+  - Text comparison for name sorting
+  - Numeric comparison with currency parsing for price sorting
+- **Modular Design**: Reusable utility functions for sorting operations
+- **Responsive Verification**: Dynamic element handling with length assertions
+
+## 🌟 Portfolio Highlights
+- Implements **4 distinct sorting mechanisms** with precise validation
+- Uses **Cypress best practices** for selectors and assertions
+- Demonstrates **clean test architecture** with separation of concerns
+- Includes **error handling** for price parsing edge cases
