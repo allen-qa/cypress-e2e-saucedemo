@@ -95,6 +95,7 @@ describe('SauceDemo Login Tests', () => {
 </div>
 </details>
 </div>
+
 ![Login Test Demo](assets/gifs/login-demo.gif)
 
 ---
@@ -174,6 +175,7 @@ describe('SauceDemo Logout Tests', () => {
 </div>
 </details>
 </div>
+
 ![Logout Test Demo](assets/gifs/logout-demo.gif)
 
 ---
@@ -311,6 +313,7 @@ describe('SauceDemo Inventory Tests', () => {
 </div>
 </details>
 </div>
+
 ![Inventory Test Demo](assets/gifs/inventory-demo.gif)
 
 ---
@@ -422,6 +425,7 @@ describe('SauceDemo Cart Tests', () => {
 </div>
 </details>
 </div>
+
 ![Cart Test Demo](assets/gifs/cart-demo.gif)
 
 ---
